@@ -30,8 +30,7 @@
                             <v-text-field label="Digite sua busca" v-model="formData.name"></v-text-field>
                         </v-col>
                         <v-col cols="2" class="p-0">
-                            <v-btn depressed class="btn-search font-weight-bold" @click="fetchStudentById"> Pesquisar
-                            </v-btn>
+                            <v-btn depressed class="btn-search font-weight-bold" @click="fetchStudentById"> Pesquisar </v-btn>
                         </v-col>
                         <v-col cols="3">
                             <v-btn color="grey" class="ma-2 white--text" @click="createStudent(item);">
@@ -111,13 +110,10 @@ export default {
             this.showDialog = true;
             this.isRegister = false;
         },
-        fetchStudentById() {
+        fetchStudentById(){
             this.fetchStudents();
-            let filterStudent = this.students.filter((student) => student.name.toLowerCase().includes(this.formData.name.toLowerCase()));
-            this.students = [];
-            filterStudent.forEach((student) => {
-                this.students.push(student);
-            });
+            let filterStudent = this.students.filter((student) => console.log('EST:',student));
+            console.log('filterStudent: ',filterStudent)
         },
         async deleteStudent(student) {
             try {

@@ -114,10 +114,8 @@ export default {
         fetchStudentById() {
             this.fetchStudents();
             let filterStudent = this.students.filter((student) => student.name.toLowerCase().includes(this.formData.name.toLowerCase()));
-            this.students = [];
-            filterStudent.forEach((student) => {
-                this.students.push(student);
-            });
+            console.log('FILTERED: ', filterStudent)
+            this.students = filterStudent;
         },
         async deleteStudent(student) {
             try {

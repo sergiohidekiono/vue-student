@@ -117,7 +117,7 @@ export default {
             this.students = [];
             filterStudent.forEach((student) => {
                 this.students.push(student);
-            });
+            })
         },
         async deleteStudent(student) {
             try {

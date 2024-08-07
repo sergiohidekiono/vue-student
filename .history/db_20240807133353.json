@@ -1,0 +1,33 @@
+{
+  "students": [
+    {
+      "id": "1",
+      "register": "101235",
+      "name": "Paula Souza",
+      "email": "paula@gmail.com",
+      "document": "121.999.999-99"
+    },
+    {
+      "id": "2",
+      "register": "111687",
+      "name": "João Silva",
+      "email": "joao@gmail.com",
+      "document": "122.999.999-99"
+    },
+    {
+      "id": "3",
+      "register": "111365",
+      "name": "Marina Miranda",
+      "email": "marina@gmail.com",
+      "document": "123.999.999-99"
+    },
+    {
+      "id": "4",
+      "register": "101299",
+      "name": "Maurício Souza",
+      "email": "mauricio@gmail.com",
+      "document": "124.999.999-99"
+    }
+    
+  ]
+}

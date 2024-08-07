@@ -27,21 +27,20 @@
                     </v-row>
                     <v-row class="wrap-buttons">
                         <v-col cols="7" class="p-0">
-                            <v-text-field label="Digite sua busca" v-model="formData.name"></v-text-field>
+                            <v-text-field label="Digite sua busca"></v-text-field>
                         </v-col>
                         <v-col cols="2" class="p-0">
-                            <v-btn depressed class="btn-search font-weight-bold" @click="fetchStudentById"> Pesquisar
-                            </v-btn>
+                            <v-btn depressed class="btn-search font-weight-bold"> Pesquisar </v-btn>
                         </v-col>
                         <v-col cols="3">
-                            <v-btn color="grey" class="ma-2 white--text" @click="createStudent(item);">
+                            <v-btn color="grey" class="ma-2 white--text" @click="this.showDialog = true">
                                 Cadastrar Aluno
                             </v-btn>
                         </v-col>
                     </v-row>
                     <v-data-table :headers="headers" :items="students" :items-per-page="5" class="elevation-1">
                         <template v-slot:[`item.action`]="{ item }">
-                            <v-btn @click="editStudent(item);" icon>
+                            <v-btn @click="editStudent(item)" icon>
                                 <v-icon>mdi-pencil</v-icon>
                             </v-btn>
                             <v-btn @click="deleteStudent(item)" icon>
@@ -52,10 +51,9 @@
                 </template>
                 <template v-if="showDialog">
                     <v-row justify="center" class="pa-1 header">
-                        <span v-if="isRegister">Cadastro de aluno</span>
-                        <span v-if="!isRegister">Editar aluno</span>
+                        <span>Cadastrar alunos</span>
                     </v-row>
-                    <register-edit-student @dialog="receiveValueWatch" :student-id="selectedStudentId" />
+                    <register-edit-student @close="handleCloseDialog"/>
                 </template>
             </v-col>
         </v-row>
@@ -66,6 +64,7 @@
 import axios from 'axios';
 import RegisterEditStudent from './register-edit-student.vue';
 
+
 export default {
     name: 'StudentList',
     components: {
@@ -74,11 +73,6 @@ export default {
     data() {
         return {
             showDialog: false,
-            isRegister: false,
-            selectedStudentId: null,
-            formData: {
-                name: '',
-            },
             menus: [
                 { title: 'Alunos' },
             ],
@@ -95,42 +89,26 @@ export default {
         this.fetchStudents();
     },
     methods: {
-        receiveValueWatch(value) {
-            if (value) {
-                this.fetchStudents();
-            }
+        receiveValueWatch() {
+            console.log('entrei no handleclose')
             this.showDialog = false;
         },
-        createStudent() {
-            this.selectedStudentId = null;
-            this.showDialog = true;
-            this.isRegister = true;
-        },
         editStudent(item) {
-            this.selectedStudentId = item.id;
-            this.showDialog = true;
-            this.isRegister = false;
-        },
-        fetchStudentById() {
-            this.fetchStudents();
-            let filterStudent = this.students.filter((student) => student.name.toLowerCase().includes(this.formData.name.toLowerCase()));
-            this.students = [];
-            filterStudent.forEach((student) => {
-                this.students.push(student);
-            });
+            console.log('Editando', item);
         },
         async deleteStudent(student) {
             try {
                 await axios.delete(`http://localhost:3000/students/${student.id}`);
                 this.fetchStudents();
             } catch (error) {
-                console.error('Erro ao tentar excluir o estudante:', error.response ? error.response.data : error.message);
+                console.error('Error removing student:', error.response ? error.response.data : error.message);
             }
         },
         async fetchStudents() {
             try {
                 const response = await axios.get("http://localhost:3000/students");
-                this.students = response.data;
+                this.students = response.data
+                console.log('DATA: ', this.students);
             } catch (error) {
                 console.log('Erro ao buscar estudante!', error);
             }

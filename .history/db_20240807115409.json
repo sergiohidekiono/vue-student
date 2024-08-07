@@ -1,0 +1,24 @@
+{
+    "students": [
+        {
+            "register": 101235,
+            "name": "Paula Souza",
+            "document": "121.999.999-99"
+        },
+        {
+            "register": 111687,
+            "name": "João Silva",
+            "document": "122.999.999-99"
+        },
+        {
+            "register": 111365,
+            "name": "Marina Miranda",
+            "document": "123.999.999-99"
+        },
+        {
+            "register": 101299,
+            "name": "Maurício Souza",
+            "document": "124.999.999-99"
+        }
+    ]
+}
