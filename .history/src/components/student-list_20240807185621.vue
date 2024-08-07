@@ -30,7 +30,7 @@
                             <v-text-field label="Digite sua busca" v-model="formData.name"></v-text-field>
                         </v-col>
                         <v-col cols="2" class="p-0">
-                            <v-btn depressed class="btn-search font-weight-bold" @click="fetchStudentByName"> Pesquisar
+                            <v-btn depressed class="btn-search font-weight-bold" @click="fetchStudentById"> Pesquisar
                             </v-btn>
                         </v-col>
                         <v-col cols="3">
@@ -47,9 +47,6 @@
                             <v-btn @click="deleteStudent(item)" icon>
                                 <v-icon>mdi-delete</v-icon>
                             </v-btn>
-                        </template>
-                        <template v-slot:no-data>
-                            <v-alert>Nenhum Aluno encontrado.</v-alert>
                         </template>
                     </v-data-table>
                 </template>
@@ -114,8 +111,10 @@ export default {
             this.showDialog = true;
             this.isRegister = false;
         },
-        fetchStudentByName() {
+        fetchStudentById() {
             this.students = this.students.filter((student) => student.name.toLowerCase().includes(this.formData.name.toLowerCase()));
+            console.log(this.students)
+            return this.students;
         },
         async deleteStudent(student) {
             try {

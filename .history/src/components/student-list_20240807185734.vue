@@ -48,9 +48,6 @@
                                 <v-icon>mdi-delete</v-icon>
                             </v-btn>
                         </template>
-                        <template v-slot:no-data>
-                            <v-alert>Nenhum Aluno encontrado.</v-alert>
-                        </template>
                     </v-data-table>
                 </template>
                 <template v-if="showDialog">
