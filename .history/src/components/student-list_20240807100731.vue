@@ -1,0 +1,116 @@
+<template>
+    <v-container>
+        <v-row>
+            <div class="d-flex align-start">
+                <v-img :src="require('../assets/logo.png')" class="my-3" />
+            </div>
+        </v-row>
+        <v-row>
+            <v-col cols="2">
+                <v-navigation-drawer v-model="drawer" app clipped :permanent="false">
+                    <v-list>
+                        <v-list-item>
+                            <v-list-item-content class="header-table" style="padding: 0 !important;">
+                                <v-list-item-title style="padding: 0; margin: 0;">
+                                    <h4 class="d-flex justify-center">Módulo Acadêmico</h4>
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                        <v-list-item link>
+                            <v-list-item-content style="padding: 0;">
+                                <v-list-item-title class="ml-4">Alunos</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list>
+                </v-navigation-drawer>
+            </v-col>
+            <v-col cols="10">
+                <v-row cols="12" justify="center">
+                    <v-row>
+                        <span>Consulta de alunos</span>
+                    </v-row>
+                    <v-row>
+                        <v-text-field label="Digite sua busca"></v-text-field>
+                        <v-btn depressed> Normal </v-btn>
+                        <v-btn :loading="loading3" :disabled="loading3" color="blue-grey" class="ma-2 white--text"
+                            @click="loader = 'loading3'"> Cadastrar Aluno </v-btn>
+                    </v-row>
+                    <v-row>
+                        <template>
+                            <v-data-table :headers="headers" :items="desserts" :items-per-page="5"
+                                class="elevation-1"></v-data-table>
+                        </template>
+                    </v-row>
+                </v-row>
+            </v-col>
+        </v-row>
+    </v-container>
+</template>
+
+<script>
+
+export default {
+    name: 'StudentList',
+    data() {
+        return {
+            headers: [
+                {
+                    text: 'Registro Acadêmico',
+                    value: 'register',
+                },
+                { text: 'Nome', value: 'name' },
+                { text: 'CPF', value: 'document' },
+                { text: 'Ações', value: 'action' }
+            ],
+            desserts: [
+                {
+                    register: 'Frozen Yogurt',
+                    name: 159,
+                    document: 6.0,
+                    action: 24,
+                },
+                {
+                    register: 'Ice cream sandwich',
+                    name: 237,
+                    document: 9.0,
+                    action: 37,
+                },
+                {
+                    register: 'Eclair',
+                    name: 262,
+                    document: 16.0,
+                    action: 23,
+                },
+                {
+                    register: 'Cupcake',
+                    name: 305,
+                    document: 3.7,
+                    action: 67,
+                },
+
+            ],
+        }
+    }
+}
+
+</script>
+
+<style scoped>
+.v-list-item.theme--light .header-table {
+    color: white;
+    padding: 0 !important;
+}
+
+.v-list-item.theme--light {
+    padding: 0 !important;
+    background: #999999;
+}
+
+.v-list.v-sheet.theme--light {
+    padding: 0 !important;
+}
+
+.v-list-item.v-list-item--link.theme--light {
+    background: white;
+}
+</style>
